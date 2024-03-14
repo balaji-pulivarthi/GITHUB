@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Sign up form</title>
+<style>
+body {
+  background: linear-gradient(90deg, rgb(41, 87, 214) 0%, rgb(39, 6, 138) 50%);
+  font-family: "Poppins";    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh ;
+}
+form {
+  position: relative;
+  background: #FFFFFF;
+  max-width: 360px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius:15px;
+}
+label {
+display: block;
+margin-bottom: 8px;
+}
+input {
+width: 100%;
+padding: 8px;
+margin-bottom: 16px;
+box-sizing: border-box;
+}
+button {
+background-color: #36bde3;
+color: #fff;
+padding: 10px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+button:hover {
+background-color: rgb(214, 68, 122);
+}
+.error {
+color: rgb(43, 192, 208);
+margin-top: -10px;
+margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<form id="registrationForm" onsubmit="validateForm(event)">
+<h1 > Registration Form</h1>
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required pattern="[A-Za-z ]+"
+title="Name should contain alphabets or spaces">
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" required
+pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8
+,}$"
+title="Password should have a minimum length of 8 characters, at
+least one lowercase letter, one uppercase letter, one digit, and one
+special character">
+<button type="submit"><a href="http://127.0.0.1:5500/project.html"></a>Register</button>
+<p class="message">Already registered? <a href="http://127.0.0.1:5500/login%20form.html">login</a></p>
+
+</form>
+<script>
+function validateForm(event) {
+const nameRegex = /^[A-Za-z ]+$/;
+const pinRegex = /^[0-9]{6}$/;
+const passwordRegex =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const nameInput = document.getElementById('name');
+const ageInput = document.getElementById('age');
+const emailInput = document.getElementById('email');
+const pinInput = document.getElementById('pin');
+const passwordInput = document.getElementById('password');
+if (!nameRegex.test(nameInput.value)) {
+showError(nameInput, "Name should contain alphabets or spaces");
+event.preventDefault();
+} else {
+hideError(nameInput);
+}
+
+if (!emailInput.checkValidity()) {
+showError(emailInput, "Invalid email address");
+event.preventDefault();
+} else {
+hideError(emailInput);
+}
+if (!passwordRegex.test(passwordInput.value)) {
+showError(passwordInput, "Password should meet the criteria");
+event.preventDefault();
+} else {
+hideError(passwordInput);
+}
+}
+function showError(input, message) {
+const errorDiv = input.nextElementSibling;
+errorDiv.textContent = message;
+errorDiv.style.display = 'block';
+}
+function hideError(input) {
+const errorDiv = input.nextElementSibling;
+errorDiv.textContent = '';
+errorDiv.style.display = 'none';
+}
+</script>
+</body>
+</html>
